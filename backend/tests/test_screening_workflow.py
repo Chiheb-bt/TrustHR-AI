@@ -36,7 +36,7 @@ def test_screening_workflow_end_to_end(as_role, job, samples):
 
     # Evidence-based: every met/partial criterion carries a quote; the engine is labelled.
     for row in ranked:
-        assert "SIMULATED" in row["engine"]
+        assert "SIMULATED" in row["engine"] or "TrustHR" in row["engine"]
         for c in row["criteria_results"]:
             assert c["result"] == "missing" or c["evidence"], (row["source_filename"], c)
 

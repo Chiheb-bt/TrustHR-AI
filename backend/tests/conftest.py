@@ -36,8 +36,13 @@ PASSWORDS = {role: secrets.token_urlsafe(16) for role in ("recruiter", "hr_admin
 @pytest.fixture(autouse=True)
 def fresh_db():
     engine = get_engine()
-    with engine.begin() as conn:
-        conn.execute(text("DROP SCHEMA public CASCADE; CREATE SCHEMA public;"))
+    if engine.dialect.name == "postgresql":
+        with engine.begin() as conn:
+            conn.execute(text("DROP SCHEMA public CASCADE; CREATE SCHEMA public;"))
+    else:
+        from app.models import Base
+        Base.metadata.drop_all(bind=engine)
+        Base.metadata.create_all(bind=engine)
     init_db()
     auth_api._attempts.clear()
     yield

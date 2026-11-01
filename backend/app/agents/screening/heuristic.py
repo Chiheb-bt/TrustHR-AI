@@ -40,7 +40,7 @@ def _term_pattern(term: str) -> re.Pattern:
 
 
 class HeuristicEngine:
-    label = "TrustHR Deterministic Evidence Engine (Enterprise Local)"
+    label = "TrustHR Deterministic Evidence Engine (SIMULATED, Enterprise Local)"
 
     def extract_profile(self, cv_text: str, criteria: list[Criterion]) -> tuple[CandidateProfile, list[str]]:
         lines = _lines(cv_text)

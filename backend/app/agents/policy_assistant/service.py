@@ -22,7 +22,7 @@ from app.agents.policy_assistant.knowledge import (
 from app.agents.prompts.policy_assistant import SYSTEM, user_prompt
 from app.security.injection import scan_rules
 
-OFFLINE_MODE = "TrustHR Policy Retrieval Engine (Local Semantic)"
+OFFLINE_MODE = "TrustHR Policy Retrieval Engine (SIMULATED, no LLM)"
 MIN_SCORE = 3.0        # best passage below this: "not found"
 MIN_COVERAGE = 0.4     # share of the question's distinctive words the best passage must contain
 FOLLOW_UP_TERMS = 6    # a question with this few content words reuses the previous question

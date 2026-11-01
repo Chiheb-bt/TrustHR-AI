@@ -18,8 +18,9 @@ _LOCK_KEY = 7_342_001  # serialises appends so the chain never forks
 
 
 def _entry_hash(prev_hash: str, row: AuditLog) -> str:
+    row_at = row.at if row.at.tzinfo is not None else row.at.replace(tzinfo=timezone.utc)
     body = {
-        "at": row.at.astimezone(timezone.utc).isoformat(timespec="microseconds"),
+        "at": row_at.astimezone(timezone.utc).isoformat(timespec="microseconds"),
         "actor_type": row.actor_type,
         "actor_id": row.actor_id,
         "action": row.action,

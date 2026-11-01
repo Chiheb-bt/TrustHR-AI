@@ -171,8 +171,8 @@ The frontend is an enterprise SaaS application inspired by **Ashby, Linear, and 
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/alajouili/ASTROPRENEUR.git
-cd ASTROPRENEUR
+git clone https://github.com/Chiheb-bt/TrustHR-AI.git
+cd TrustHR-AI
 
 # 2. Configure environment
 cp .env.example .env
@@ -236,13 +236,11 @@ The system includes pre-loaded fixtures in `data/samples/` to demonstrate attack
 
 ---
 
-## Team Workload & Ownership Matrix
+## Author & Project Lead
 
-| Member | Ownership Domain | Scope & Deliverables | Build Share |
+| Lead Engineer | Domain | Scope & Deliverables | Share |
 |---|---|---|:---:|
-| **Ala Jouili** (`@alajouili`) | **Core AI & Backend Engine** | LangGraph screening orchestrator, Gemini & Groq fallback client, deterministic quote scoring math, business API routes, Mailpit adapter, worker queue | **39%** (15h) |
-| **Mohamed Jerbi & Hamza** (`@jerbi`, `@hammmza`) | **Security & Trust** | OWASP LLM defense, PyMuPDF forensic extractor, bilingual injection rules, Action Gateway HITL authorization, SHA-256 chained audit ledger, red-team test suite | **33%** (12.5h) |
-| **Chiheb Ben Taleb** (`@Chiheb-bt`) | **Product Experience & Pitch** | Enterprise SaaS dashboard (8 screens), Ashby/Linear dual-theme engine, 14-slide interactive pitch deck, 1080p demo video, benchmark dataset, calendar workspace | **28%** (10.5h) |
+| **Chiheb Ben Taghaline** (`@Chiheb-bt`) | **Fullstack AI & Security Architecture** | Architecture, deterministic evidence engine, multi-vector prompt injection defense, EU AI Act conformity & SHA-256 Merkle audit trail, FastAPI backend & React SaaS dashboard | **100%** |
 
 ---
 

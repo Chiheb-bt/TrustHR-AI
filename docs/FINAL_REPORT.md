@@ -1,7 +1,7 @@
 # TrustHR AI — Final Delivery & Verification Report
 
 **Project**: TrustHR AI (Defense-Grade Human-in-the-Loop HR Recruitment Platform)  
-**Repository**: `https://github.com/alajouili/ASTROPRENEUR.git` (branch `main`)  
+**Repository**: `https://github.com/Chiheb-bt/TrustHR-AI.git` (branch `main`)  
 **Date**: October 31, 2026  
 **Status**: 100% Passing & Ready for Live Hackathon Presentation  
 

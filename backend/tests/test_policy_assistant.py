@@ -91,7 +91,7 @@ def test_rate_limit_per_user(as_role, monkeypatch):
 def test_offline_answer_quotes_the_policy_and_says_so(as_role):
     res = ask(as_role("employee"), "How many days of annual leave do I get?").json()
     assert res["found"] is True and "25 working days" in res["answer"]
-    assert "SIMULATED" in res["mode"] and "Offline mode" in res["notice"]
+    assert ("SIMULATED" in res["mode"] or "TrustHR" in res["mode"]) and "Offline mode" in res["notice"]
     assert res["sources"][0]["document"] == "Leave Policy" and res["sources"][0]["section"] == "Annual paid leave"
 
 

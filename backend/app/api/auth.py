@@ -1,7 +1,7 @@
 """Login / logout / current user."""
 import time
 from collections import defaultdict, deque
-from datetime import timedelta
+from datetime import timedelta, timezone
 
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from pydantic import BaseModel, Field
@@ -54,11 +54,15 @@ def login(body: LoginIn, request: Request, response: Response, db: Session = Dep
               entity_id=body.email.strip().lower(), details={"reason": "not_found"})
         db.commit()
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Invalid email or password")
-    if user.locked_until and user.locked_until > utcnow():
-        audit(db, actor_type="system", actor_id="auth", action="auth.locked_attempt", entity_type="user",
-              entity_id=user.id, details={"locked_until": user.locked_until.isoformat()})
-        db.commit()
-        raise HTTPException(status.HTTP_423_LOCKED, "Account temporarily locked after repeated failures")
+    locked_until = user.locked_until
+    if locked_until is not None:
+        if locked_until.tzinfo is None:
+            locked_until = locked_until.replace(tzinfo=timezone.utc)
+        if locked_until > utcnow():
+            audit(db, actor_type="system", actor_id="auth", action="auth.locked_attempt", entity_type="user",
+                  entity_id=user.id, details={"locked_until": user.locked_until.isoformat()})
+            db.commit()
+            raise HTTPException(status.HTTP_423_LOCKED, "Account temporarily locked after repeated failures")
     if not verify_password(body.password, user.password_hash):
         user.failed_logins += 1
         if user.failed_logins >= LOCK_AFTER_FAILURES:
